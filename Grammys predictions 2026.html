@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicciones Grammys 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:wght@400;700;900&family=Work+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #D4AF37;
+            --dark-gold: #B8941E;
+            --deep-black: #0A0A0A;
+            --soft-black: #1A1A1A;
+            --gray: #2A2A2A;
+            --light-gray: #CCCCCC;
+            --white: #FAFAFA;
+            --accent-red: #C41E3A;
+            --accent-green: #10B981;
+            --dark-green: #059669;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: linear-gradient(135deg, var(--deep-black) 0%, var(--soft-black) 50%, var(--gray) 100%);
+            color: var(--white);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                    radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 70%, rgba(196, 30, 58, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 60px 20px;
+            background: linear-gradient(180deg, rgba(212, 175, 55, 0.1) 0%, transparent 100%);
+            border-bottom: 2px solid var(--gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '♪';
+            position: absolute;
+            font-size: 300px;
+            opacity: 0.03;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            font-family: 'Playfair Display', serif;
+        }
+
+        h1 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(3rem, 8vw, 6rem);
+            letter-spacing: 8px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--white) 50%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+            animation: shimmer 3s ease-in-out infinite;
+            position: relative;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.85; }
+        }
+
+        .subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--light-gray);
+            letter-spacing: 2px;
+        }
+
+        .stats-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+            padding: 30px;
+            background: rgba(26, 26, 26, 0.6);
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--gray) 0%, var(--soft-black) 100%);
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid var(--gold);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .stat-card:hover::before {
+            left: 100%;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .stat-number {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 3rem;
+            color: var(--gold);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--light-gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: 2px solid var(--gold);
+            background: var(--soft-black);
+            color: var(--gold);
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background: var(--gold);
+            color: var(--deep-black);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn.active {
+            background: var(--gold);
+            color: var(--deep-black);
+        }
+
+        .category-section {
+            background: rgba(26, 26, 26, 0.8);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .category-section:hover {
+            border-color: var(--gold);
+            box-shadow: 0 5px 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .category-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--gold);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .category-icon {
+            font-size: 2.5rem;
+        }
+
+        .nominees-grid {
+            display: grid;
+            gap: 15px;
+        }
+
+        .nominee-card {
+            background: var(--gray);
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: grid;
+            grid-template-columns: 1fr auto auto auto;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nominee-card:hover {
+            border-color: var(--gold);
+            background: var(--soft-black);
+            transform: translateX(5px);
+        }
+
+        .nominee-card.winner {
+            border-color: var(--gold);
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, var(--gray) 100%);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .nominee-card.correct-prediction {
+            border-color: var(--accent-green);
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.25) 0%, rgba(212, 175, 55, 0.15) 50%, var(--gray) 100%);
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.4);
+            position: relative;
+        }
+
+        .nominee-card.correct-prediction::after {
+            content: '✓ ACERTASTE!';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--accent-green);
+            color: var(--white);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .nominee-card.prediction {
+            border-color: var(--accent-green);
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, var(--gray) 100%);
+        }
+
+        .nominee-card.runner {
+            border-color: var(--accent-red);
+            background: linear-gradient(135deg, rgba(196, 30, 58, 0.15) 0%, var(--gray) 100%);
+        }
+
+        .nominee-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: var(--white);
+        }
+
+        .nominee-info p {
+            font-size: 0.9rem;
+            color: var(--light-gray);
+        }
+
+        .selection-btn {
+            padding: 8px 20px;
+            border: 2px solid;
+            background: transparent;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .selection-btn.predict {
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
+
+        .selection-btn.predict:hover,
+        .selection-btn.predict.selected {
+            background: var(--accent-green);
+            color: var(--white);
+        }
+
+        .selection-btn.runner {
+            border-color: var(--accent-red);
+            color: var(--accent-red);
+        }
+
+        .selection-btn.runner:hover,
+        .selection-btn.runner.selected {
+            background: var(--accent-red);
+            color: var(--white);
+        }
+
+        .selection-btn.winner {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .selection-btn.winner:hover,
+        .selection-btn.winner.selected {
+            background: var(--gold);
+            color: var(--deep-black);
+        }
+
+        .badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge.prediction-badge {
+            background: var(--accent-green);
+            color: var(--white);
+        }
+
+        .badge.runner-badge {
+            background: var(--accent-red);
+            color: var(--white);
+        }
+
+        .badge.winner-badge {
+            background: var(--gold);
+            color: var(--deep-black);
+            font-weight: 700;
+        }
+
+        .legend {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .legend-color {
+            width: 30px;
+            height: 30px;
+            border-radius: 5px;
+            border: 2px solid;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            color: var(--light-gray);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .nominee-card {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .controls {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            header {
+                padding: 40px 20px;
+            }
+
+            .category-section {
+                padding: 20px;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--gray);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--gold), var(--dark-gold));
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>GRAMMYS 2026</h1>
+        <p class="subtitle">Predicciones & Resultados</p>
+    </header>
+
+    <div class="stats-dashboard">
+        <div class="stat-card">
+            <span class="stat-number" id="totalCategories">0</span>
+            <span class="stat-label">Categorías Totales</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number" id="predictionsCount">0</span>
+            <span class="stat-label">Predicciones Hechas</span>
+            <div class="progress-bar">
+                <div class="progress-fill" id="predictionsProgress"></div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number" id="runnersCount">0</span>
+            <span class="stat-label">Runners-Up</span>
+            <div class="progress-bar">
+                <div class="progress-fill" id="runnersProgress"></div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number" id="winnersCount">0</span>
+            <span class="stat-label">Ganadores</span>
+            <div class="progress-bar">
+                <div class="progress-fill" id="winnersProgress"></div>
+            </div>
+        </div>
+        <div class="stat-card" style="grid-column: span 2;">
+            <span class="stat-number" id="accuracyCount" style="color: var(--accent-green);">0</span>
+            <span class="stat-label">🎯 Aciertos (Predicción = Ganador)</span>
+            <div class="progress-bar">
+                <div class="progress-fill" id="accuracyProgress" style="background: linear-gradient(90deg, var(--accent-green), var(--dark-green));"></div>
+            </div>
+        </div>
+        <div class="stat-card" style="grid-column: span 2;">
+            <span class="stat-number" id="accuracyPercentage" style="color: var(--accent-green);">0%</span>
+            <span class="stat-label">Porcentaje de Aciertos</span>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="btn active" onclick="filterCategories('all')">Todas las Categorías</button>
+        <button class="btn" onclick="filterCategories('general')">Generales</button>
+        <button class="btn" onclick="filterCategories('pop')">Pop</button>
+        <button class="btn" onclick="filterCategories('rap')">Rap/R&B</button>
+        <button class="btn" onclick="filterCategories('latino')">Latino</button>
+        <button class="btn" onclick="filterCategories('otros')">Otros</button>
+        <button class="btn" onclick="resetAll()">Reiniciar Todo</button>
+    </div>
+
+    <div class="legend">
+        <div class="legend-item">
+            <div class="legend-color" style="background: rgba(16, 185, 129, 0.3); border-color: var(--accent-green);"></div>
+            <span>Tu Predicción</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: rgba(196, 30, 58, 0.3); border-color: var(--accent-red);"></div>
+            <span>Runner-Up</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: rgba(212, 175, 55, 0.3); border-color: var(--gold);"></div>
+            <span>Ganador Real</span>
+        </div>
+    </div>
+
+    <div id="categoriesContainer"></div>
+
+    <footer>
+        <p>Predicciones Grammys 2026 | Creado con pasión por la música 🎵</p>
+    </footer>
+</div>
+
+<script>
+    const grammysData = {
+        general: [
+            {
+                id: 'aoty',
+                title: 'Álbum del Año',
+                icon: '💿',
+                nominees: [
+                    { name: 'Debí tirar más fotos', artist: 'Bad Bunny' },
+                    { name: 'SWAG', artist: 'Justin Bieber' },
+                    { name: "Man's Best Friend", artist: 'Sabrina Carpenter' },
+                    { name: 'Let God Sort Em Out', artist: 'Clipse, Pusha T y Malice' },
+                    { name: 'Mayhem', artist: 'Lady Gaga' },
+                    { name: 'GNX', artist: 'Kendrick Lamar' },
+                    { name: 'Mutt', artist: 'Leon Thomas' },
+                    { name: 'Chromakopia', artist: 'Tyler, the Creator' }
+                ]
+            },
+            {
+                id: 'roty',
+                title: 'Grabación del Año',
+                icon: '🎤',
+                nominees: [
+                    { name: 'DtMF', artist: 'Bad Bunny' },
+                    { name: 'Manchild', artist: 'Sabrina Carpenter' },
+                    { name: 'Anxiety', artist: 'Doechii' },
+                    { name: 'Wildflower', artist: 'Billie Eilish' },
+                    { name: 'Abracadabra', artist: 'Lady Gaga' },
+                    { name: 'Luther', artist: 'Kendrick Lamar w/ SZA' },
+                    { name: 'The Subway', artist: 'Chappell Roan' },
+                    { name: 'APT.', artist: 'Rosé y Bruno Mars' }
+                ]
+            },
+            {
+                id: 'soty',
+                title: 'Canción del Año',
+                icon: '✍️',
+                nominees: [
+                    { name: 'Abracadabra', artist: 'Lady Gaga' },
+                    { name: 'Anxiety', artist: 'Doechii' },
+                    { name: 'DtMF', artist: 'Bad Bunny' },
+                    { name: 'Golden', artist: 'KPop Demon Hunters' },
+                    { name: 'Luther', artist: 'Kendrick Lamar w/ SZA' },
+                    { name: 'Manchild', artist: 'Sabrina Carpenter' },
+                    { name: 'Wildflower', artist: 'Billie Eilish' }
+                ]
+            },
+            {
+                id: 'bna',
+                title: 'Mejor Artista Nuevo',
+                icon: '🌟',
+                nominees: [
+                    { name: 'Olivia Dean', artist: '' },
+                    { name: 'Katseye', artist: '' },
+                    { name: 'The Marias', artist: '' },
+                    { name: 'Addison Rae', artist: '' },
+                    { name: 'Sombr', artist: '' },
+                    { name: 'Leon Thomas', artist: '' },
+                    { name: 'Alex Warren', artist: '' },
+                    { name: 'Lola Young', artist: '' }
+                ]
+            }
+        ],
+        pop: [
+            {
+                id: 'pop-vocal',
+                title: 'Mejor Interpretación Pop Solista',
+                icon: '🎵',
+                nominees: [
+                    { name: 'Daises', artist: 'Justin Bieber' },
+                    { name: 'Manchild', artist: 'Sabrina Carpenter' },
+                    { name: 'Disease', artist: 'Lady Gaga' },
+                    { name: 'The Subway', artist: 'Chappell Roan' },
+                    { name: 'Messy', artist: 'Lola Young' }
+                ]
+            },
+            {
+                id: 'pop-duo',
+                title: 'Mejor Interpretación Pop Dúo/Grupo',
+                icon: '👥',
+                nominees: [
+                    { name: 'Defying Gravity', artist: 'Cynthia Erivo y Ariana Grande' },
+                    { name: 'Golden', artist: 'HUNTR/X: Ejae, Audrey Nuna, Rei Ami' },
+                    { name: 'Gabriela', artist: 'Katseye' },
+                    { name: 'APT.', artist: 'Rosé y Bruno Mars' },
+                    { name: '30 for 30', artist: 'SZA con Kendrick Lamar' }
+                ]
+            },
+            {
+                id: 'pop-vocal-album',
+                title: 'Mejor Álbum de Pop Vocal',
+                icon: '💽',
+                nominees: [
+                    { name: 'Swag', artist: 'Justin Bieber' },
+                    { name: "Man's Best Friend", artist: 'Sabrina Carpenter' },
+                    { name: 'Something Beautiful', artist: 'Miley Cyrus' },
+                    { name: 'Mayhem', artist: 'Lady Gaga' },
+                    { name: "I've Tried Everything but Therapy (Part 2)", artist: 'Teddy Swims' }
+                ]
+            },
+            {
+                id: 'dance-pop',
+                title: 'Mejor Grabación de Dance Pop',
+                icon: '💃',
+                nominees: [
+                    { name: 'Bluest Flame', artist: 'Selena Gomez y Benny Blanco (Prod: Benny Blanco, Dylan Brady, Cashmere Cat)' },
+                    { name: 'Abracadabra', artist: 'Lady Gaga (Prod: Cirkut, Lady Gaga, Andrew Watt)' },
+                    { name: 'Midnight Sun', artist: 'Zara Larsson (Prod: Margo XS y MNEK)' },
+                    { name: 'Just Keep Watching', artist: 'Tate McRae (Prod: Tyler Spry y Ryan Tedder)' },
+                    { name: 'Illegal', artist: 'PinkPantheress (Prod: Aksel Arvid y PinkPantheress)' }
+                ]
+            }
+        ],
+        rap: [
+            {
+                id: 'rap-album',
+                title: 'Mejor Álbum de Rap',
+                icon: '🎧',
+                nominees: [
+                    { name: 'Let God Sort Em Out', artist: 'Clipse, Pusha T y Malice' },
+                    { name: 'Glorious', artist: 'GloRilla' },
+                    { name: 'God Does Like Ugly', artist: 'JID' },
+                    { name: 'GNX', artist: 'Kendrick Lamar' },
+                    { name: 'Chromakopia', artist: 'Tyler, The Creator' }
+                ]
+            },
+            {
+                id: 'rap-performance',
+                title: 'Mejor Interpretación de Rap',
+                icon: '🎤',
+                nominees: [
+                    { name: 'Outside', artist: 'Cardi B' },
+                    { name: 'Chains & Whips', artist: 'Clipse, Pusha T & Malice con Kendrick Lamar & Pharrell Williams' },
+                    { name: 'Anxiety', artist: 'Doechii' },
+                    { name: 'TV off', artist: 'Kendrick Lamar con Lefty Gunplay' },
+                    { name: 'Darling, I', artist: 'Tyler, the Creator con Teezo Touchdown' }
+                ]
+            },
+            {
+                id: 'rap-melodic',
+                title: 'Mejor Interpretación de Rap Melódico',
+                icon: '🎶',
+                nominees: [
+                    { name: 'Proud of Me', artist: 'Fridayy con Meek Mill' },
+                    { name: 'Wholeheartedly', artist: 'JID con Ty Dolla Sign y 6Lack' },
+                    { name: 'Luther', artist: 'Kendrick Lamar y SZA' },
+                    { name: 'WeMaj', artist: 'Terrace Martin y Kenyon Dixon con Rapsody' },
+                    { name: 'Somebody Loves Me', artist: 'PartyNextDoor y Drake' }
+                ]
+            },
+            {
+                id: 'rap-song',
+                title: 'Mejor Canción de Rap',
+                icon: '✒️',
+                nominees: [
+                    { name: 'Anxiety', artist: 'Doechii (Escritora: Jaylah Hickmon)' },
+                    { name: 'The Birds Don\'t Sing', artist: 'Clipse, Pusha T y Malice con John Legend y Voices of Fire' },
+                    { name: 'Sticky', artist: 'Tyler, the Creator con GloRilla, Sexyy Red y Lil Wayne' },
+                    { name: 'TGIF', artist: 'GloRilla' },
+                    { name: 'TV Off', artist: 'Kendrick Lamar con Lefty Gunplay' }
+                ]
+            },
+            {
+                id: 'rnb-album',
+                title: 'Mejor Álbum de R&B',
+                icon: '💫',
+                nominees: [
+                    { name: 'Beloved', artist: 'Giveon' },
+                    { name: 'Why Not More?', artist: 'Coco Jones' },
+                    { name: 'The Crown', artist: 'Ledisi' },
+                    { name: 'Escape Room', artist: 'Teyana Taylor' },
+                    { name: 'Mutt', artist: 'Leon Thomas' }
+                ]
+            },
+            {
+                id: 'rnb-performance',
+                title: 'Mejor Interpretación de R&B',
+                icon: '🌺',
+                nominees: [
+                    { name: 'Yukon', artist: 'Justin Bieber' },
+                    { name: 'It Depends', artist: 'Chris Brown con Bryson Tiller' },
+                    { name: 'Folded', artist: 'Kehlani' },
+                    { name: 'Mutt (Live From NPR\'s Tiny Desk)', artist: 'Leon Thomas' },
+                    { name: 'Heart Of A Woman', artist: 'Summer Walker' }
+                ]
+            },
+            {
+                id: 'rnb-song',
+                title: 'Mejor Canción de R&B',
+                icon: '💝',
+                nominees: [
+                    { name: 'Folded', artist: 'Kehlani (Escritores: Darius Dixson, Andre Harris, et al.)' },
+                    { name: 'Heart of a Woman', artist: 'Summer Walker (Escritores: David Bishop y Summer Walker)' },
+                    { name: 'It Depends', artist: 'Chris Brown con Bryson Tiller' },
+                    { name: 'Overqualified', artist: 'Durand Bernarr (Escritores: James John Abrahart Jr. y Durand Bernarr)' },
+                    { name: 'Yes It Is', artist: 'Leon Thomas' }
+                ]
+            }
+        ],
+        latino: [
+            {
+                id: 'pop-latino',
+                title: 'Mejor Álbum de Pop Latino',
+                icon: '🎺',
+                nominees: [
+                    { name: 'Cosa nuestra', artist: 'Rauw Alejandro' },
+                    { name: 'Bogotá (Deluxe)', artist: 'Andrés Cepeda' },
+                    { name: 'Tropicoqueta', artist: 'Karol G' },
+                    { name: 'Cancionera', artist: 'Natalia Lafourcade' },
+                    { name: '¿Y ahora qué?', artist: 'Alejandro Sanz' }
+                ]
+            },
+            {
+                id: 'urbana-latino',
+                title: 'Mejor Álbum de Música Urbana',
+                icon: '🔥',
+                nominees: [
+                    { name: 'Debí tirar más fotos', artist: 'Bad Bunny' },
+                    { name: 'Mixteip', artist: 'J Balvin' },
+                    { name: 'Ferxxo Vol X: Sagrado', artist: 'Feid' },
+                    { name: 'Naiki', artist: 'Nicki Nicole' },
+                    { name: 'EÚB Deluxe', artist: 'Trueno' },
+                    { name: 'Sinfónico (en vivo)', artist: 'Yandel' }
+                ]
+            },
+            {
+                id: 'rock-latino',
+                title: 'Mejor Álbum de Rock o Música Alternativa Latina',
+                icon: '🎸',
+                nominees: [
+                    { name: 'Genes rebeldes', artist: 'Aterciopelados' },
+                    { name: 'Astropical', artist: 'Bomba Estéreo, Rawayana y Astropical' },
+                    { name: 'Papota', artist: 'Ca7riel y Paco Amoroso' },
+                    { name: 'Algorhyhthm', artist: 'Los Wizzards' },
+                    { name: 'Novela', artist: 'Fito Paez' }
+                ]
+            }
+        ],
+        otros: [
+            {
+                id: 'global-performance',
+                title: 'Mejor Interpretación de Música Global',
+                icon: '🌍',
+                nominees: [
+                    { name: 'Eoo', artist: 'Bad Bunny' },
+                    { name: 'Cantando en el camino', artist: 'Ciro Hurtado' },
+                    { name: 'Jerusalema', artist: 'Angélique Kidjo' },
+                    { name: 'Inmigrante y qué?', artist: 'Yeisy Rojas' },
+                    { name: 'Shrini\'s Dream (en vivo)', artist: 'Shakti' },
+                    { name: 'Daybreak', artist: 'Anoushka Shankar con Alam Khan y Sarathy Korwar' }
+                ]
+            },
+            {
+                id: 'music-video',
+                title: 'Mejor Video Musical',
+                icon: '🎬',
+                nominees: [
+                    { name: 'Young Lion', artist: 'Sade (Dir: Sophie Muller)' },
+                    { name: 'Manchild', artist: 'Sabrina Carpenter (Dir: Vania Heymann y Gal Muggia)' },
+                    { name: 'So Be It', artist: 'Clipse (Dir: Hannan Hussain)' },
+                    { name: 'Anxiety', artist: 'Doechii (Dir: James Mackel)' },
+                    { name: 'Love', artist: 'OK Go (Dir: Aaron Duffy, Miguel Espada y Damian Kulash Jr.)' }
+                ]
+            },
+            {
+                id: 'album-cover',
+                title: 'Mejor Portada de Álbum',
+                icon: '🎨',
+                nominees: [
+                    { name: 'Chromakopia', artist: 'Shaun Llewellyn y Luis "Panch" Perez (Tyler, the Creator)' },
+                    { name: 'The Crux', artist: 'William Wesley II (Djo)' },
+                    { name: 'Debí tirar más fotos', artist: 'Benito Antonio Martínez Ocasio (Bad Bunny)' },
+                    { name: 'Glory', artist: 'Cody Critcheloe y Andrew J.S. (Perfume Genius)' },
+                    { name: 'Moisturizer', artist: 'Hester Chambers, Ellis Durand et al. (Wet Leg)' }
+                ]
+            }
+        ]
+    };
+
+    let selections = {
+        predictions: {},
+        runners: {},
+        winners: {}
+    };
+
+    let currentFilter = 'all'; // Track the current filter
+
+    function initializeApp() {
+        renderCategories();
+        updateStats();
+        loadSelections();
+    }
+
+    function renderCategories(filter = null) {
+        // If no filter is passed, use the current filter
+        if (filter !== null) {
+            currentFilter = filter;
+        }
+
+        const container = document.getElementById('categoriesContainer');
+        container.innerHTML = '';
+
+        const categoriesToShow = currentFilter === 'all'
+            ? Object.values(grammysData).flat()
+            : grammysData[currentFilter] || [];
+
+        categoriesToShow.forEach((category, index) => {
+            const section = document.createElement('div');
+            section.className = 'category-section fade-in';
+            section.style.animationDelay = `${index * 0.1}s`;
+
+            const nomineesHTML = category.nominees.map((nominee, nomIndex) => {
+                const nomineeId = `${category.id}-${nomIndex}`;
+                const isPrediction = selections.predictions[category.id] === nomIndex;
+                const isRunner = selections.runners[category.id] === nomIndex;
+                const isWinner = selections.winners[category.id] === nomIndex;
+                const isCorrectPrediction = isPrediction && isWinner;
+
+                let cardClasses = ['nominee-card'];
+                if (isCorrectPrediction) {
+                    cardClasses.push('correct-prediction');
+                } else {
+                    if (isPrediction) cardClasses.push('prediction');
+                    if (isWinner) cardClasses.push('winner');
+                }
+                if (isRunner) cardClasses.push('runner');
+
+                let badges = '';
+                if (isPrediction) badges += '<span class="badge prediction-badge">Tu Predicción</span>';
+                if (isRunner) badges += '<span class="badge runner-badge">Runner-Up</span>';
+                if (isWinner) badges += '<span class="badge winner-badge">★ Ganador</span>';
+
+                return `
+                        <div class="${cardClasses.join(' ')}">
+                            <div class="nominee-info">
+                                <h3>${nominee.name}</h3>
+                                ${nominee.artist ? `<p>${nominee.artist}</p>` : ''}
+                            </div>
+                            ${badges}
+                            <button class="selection-btn predict ${isPrediction ? 'selected' : ''}"
+                                    onclick="selectNominee('${category.id}', ${nomIndex}, 'predictions')">
+                                Predicción
+                            </button>
+                            <button class="selection-btn runner ${isRunner ? 'selected' : ''}"
+                                    onclick="selectNominee('${category.id}', ${nomIndex}, 'runners')">
+                                Runner
+                            </button>
+                            <button class="selection-btn winner ${isWinner ? 'selected' : ''}"
+                                    onclick="selectNominee('${category.id}', ${nomIndex}, 'winners')">
+                                Ganador
+                            </button>
+                        </div>
+                    `;
+            }).join('');
+
+            section.innerHTML = `
+                    <div class="category-title">
+                        <span class="category-icon">${category.icon}</span>
+                        <span>${category.title}</span>
+                    </div>
+                    <div class="nominees-grid">
+                        ${nomineesHTML}
+                    </div>
+                `;
+
+            container.appendChild(section);
+        });
+    }
+
+    function selectNominee(categoryId, nomineeIndex, type) {
+        // Validation: Can't select the same nominee as both prediction and runner-up
+        if (type === 'predictions' && selections.runners[categoryId] === nomineeIndex) {
+            alert('❌ No puedes seleccionar el mismo nominado como Predicción y Runner-Up. Por favor, elige otro.');
+            return;
+        }
+
+        if (type === 'runners' && selections.predictions[categoryId] === nomineeIndex) {
+            alert('❌ No puedes seleccionar el mismo nominado como Runner-Up y Predicción. Por favor, elige otro.');
+            return;
+        }
+
+        selections[type][categoryId] = nomineeIndex;
+        saveSelections();
+        renderCategories(); // This will now use currentFilter automatically
+        updateStats();
+    }
+
+    function updateStats() {
+        const allCategories = Object.values(grammysData).flat();
+        const total = allCategories.length;
+
+        document.getElementById('totalCategories').textContent = total;
+
+        const predictionsCount = Object.keys(selections.predictions).length;
+        const runnersCount = Object.keys(selections.runners).length;
+        const winnersCount = Object.keys(selections.winners).length;
+
+        // Calculate accuracy (predictions that match winners)
+        let accuracyCount = 0;
+        Object.keys(selections.predictions).forEach(categoryId => {
+            if (selections.winners[categoryId] !== undefined &&
+                selections.predictions[categoryId] === selections.winners[categoryId]) {
+                accuracyCount++;
+            }
+        });
+
+        // Calculate percentage only if there are winners marked
+        const accuracyPercentage = winnersCount > 0
+            ? Math.round((accuracyCount / winnersCount) * 100)
+            : 0;
+
+        document.getElementById('predictionsCount').textContent = predictionsCount;
+        document.getElementById('runnersCount').textContent = runnersCount;
+        document.getElementById('winnersCount').textContent = winnersCount;
+        document.getElementById('accuracyCount').textContent = accuracyCount;
+        document.getElementById('accuracyPercentage').textContent = accuracyPercentage + '%';
+
+        // Update progress bars
+        document.getElementById('predictionsProgress').style.width = `${(predictionsCount / total) * 100}%`;
+        document.getElementById('runnersProgress').style.width = `${(runnersCount / total) * 100}%`;
+        document.getElementById('winnersProgress').style.width = `${(winnersCount / total) * 100}%`;
+        document.getElementById('accuracyProgress').style.width = winnersCount > 0
+            ? `${(accuracyCount / winnersCount) * 100}%`
+            : '0%';
+    }
+
+    function filterCategories(category) {
+        // Update active button
+        document.querySelectorAll('.controls .btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        event.target.classList.add('active');
+
+        renderCategories(category);
+    }
+
+    function resetAll() {
+        if (confirm('¿Estás seguro de que quieres reiniciar todas las selecciones?')) {
+            selections = {
+                predictions: {},
+                runners: {},
+                winners: {}
+            };
+            saveSelections();
+            renderCategories();
+            updateStats();
+        }
+    }
+
+    function saveSelections() {
+        localStorage.setItem('grammys2026Selections', JSON.stringify(selections));
+    }
+
+    function loadSelections() {
+        const saved = localStorage.getItem('grammys2026Selections');
+        if (saved) {
+            selections = JSON.parse(saved);
+            renderCategories();
+            updateStats();
+        }
+    }
+
+    // Initialize the app
+    initializeApp();
+</script>
+</body>
+</html>
